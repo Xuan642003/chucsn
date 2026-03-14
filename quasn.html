@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Birthday!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header-box">HAPPY BIRTHDAY!</div>
+        
+        <div class="cake-container" id="cake">
+    <div class="cake-stand"></div> 
+    
+    <div class="cake">
+        <div class="icing"></div>
+        <div class="layer"></div>
+    </div>
+    <div id="candles-layer"></div>
+</div>
+
+        <div class="footer-box">
+            <p class="main-text">💫 Hãy nhắm mắt, ước một điều gì đó thật đẹp, rồi thổi nến nhé! 💫</p>
+            <p class="sub-text">🎯 Chạm vào bánh để thêm nến • 🎤 Thổi vào micro để tắt nến</p>
+        </div>
+    </div>
+
+    <div id="overlay" class="overlay"></div>
+
+<div id="wish-modal" class="modal">
+    <button class="close-btn" onclick="closeModal()">×</button>
+    <div class="avatar-wrapper">
+        <img src="anh.jpg" alt="Avatar" class="avatar">
+    </div>
+    <div class="wish-content">
+        <span class="confetti-icon">🎉</span>
+        <span id="typing-text" class="typing"></span>
+    </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>

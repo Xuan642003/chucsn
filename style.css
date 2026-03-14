@@ -1,0 +1,246 @@
+body {
+    background-color: #ffe4e1; /* Màu hồng nhạt */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.container { text-align: center; }
+
+.header-box {
+    background: #ff99aa;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* --- Bánh Kem --- */
+.cake-container {
+    position: relative;
+    width: 300px;
+    height: 250px;
+    margin: 50px auto;
+    cursor: pointer;
+    /* Hiệu ứng đổ bóng nhẹ cho toàn bộ khối bánh */
+    filter: drop-shadow(0px 8px 10px rgba(0,0,0,0.15));
+}
+
+.cake {
+    position: absolute;
+    bottom: 20px; /* Nhấc bánh lên một chút để lộ đế */
+    width: 260px;
+    height: 140px;
+    background: #ff80ab; /* Màu thân bánh */
+    left: 20px;
+    
+    /* border-radius phức tạp để tạo hình trụ 3D */
+    border-radius: 130px / 40px; /* Bo tròn mặt trên và dưới */
+    border-bottom-left-radius: 130px 60px; /* Tăng độ cong ở góc dưới để tạo cảm giác tròn */
+    border-bottom-right-radius: 130px 60px;
+
+    /* Đổ bóng phía dưới thân bánh để tạo khối */
+    box-shadow: 0 15px 0 #f06292; 
+}
+
+/* Lớp Kem Chảy (mặt trên bánh) */
+.icing {
+    position: absolute;
+    top: -15px;
+    width: 260px;
+    height: 70px;
+    background: #fff; /* Màu kem trắng */
+    border-radius: 50%; /* Tạo mặt phẳng tròn */
+    
+    /* Hiệu ứng kem chảy xuống xung quanh */
+    box-shadow: 
+        0 8px 0 -2px #fff,  /* Kem chảy lớp 1 */
+        -15px 12px 0 -4px #fff, /* Kem chảy giọt 1 */
+        15px 12px 0 -4px #fff;  /* Kem chảy giọt 2 */
+}
+
+/* Đế Lót Bánh (Màu xám) */
+.cake-stand {
+    position: absolute;
+    bottom: 0;
+    width: 300px;
+    height: 50px;
+    background: #e0e0e0; /* Màu xám nhẹ */
+    border-radius: 50%; /* Hình elip dẹt */
+    left: 0;
+    z-index: -1; /* Đặt dưới bánh */
+    
+    /* Hiệu ứng đổ bóng của đế */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+.icing {
+    position: absolute;
+    top: -10px;
+    width: 250px;
+    height: 50px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.footer-box {
+    background: white;
+    padding: 15px 40px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.main-text { color: #ff6699; font-weight: bold; margin-bottom: 5px; }
+.sub-text { color: #ffb3c1; font-size: 12px; }
+
+/* --- Nến --- */
+.candle {
+    position: absolute;
+    width: 12px;
+    height: 50px;
+    /* Dải màu tạo độ sâu 3D cho thân nến trụ */
+    background: linear-gradient(to right, 
+        rgba(255,255,255,0.2), 
+        rgba(0,0,0,0) 20%, 
+        rgba(0,0,0,0) 80%, 
+        rgba(255,255,255,0.2)
+    );
+    bottom: 120px;
+    border-radius: 4px; /* Bo nhẹ góc nến */
+    z-index: 2; /* Nến nằm trên bánh */
+    
+    /* Bo tròn mặt trên nến và tạo lỗ cắm bấc */
+    border-top: 5px solid rgba(255,255,255,0.3);
+    border-radius: 4px 4px 0 0;
+}
+
+/* Bấc Nến */
+.candle::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 4px;
+    width: 4px;
+    height: 8px;
+    background: #444; /* Màu bấc đen */
+    border-radius: 2px;
+}
+
+/* --- Ngọn Lửa --- */
+.flame {
+    position: absolute;
+    top: -20px;
+    left: 1px;
+    width: 10px;
+    height: 20px;
+    
+    /* Dải màu ngọn lửa từ vàng sang đỏ */
+    background: radial-gradient(ellipse at bottom, #fef4a4 20%, #f9d83d 40%, #f48b29 60%, #e85c18 80%, rgba(232, 92, 24, 0) 100%);
+    
+    /* Hình dạng ngọn lửa giọt nước */
+    border-radius: 50% 50% 20% 20%;
+    
+    /* Hiệu ứng ánh sáng tỏa ra (màu cam vàng) */
+    box-shadow: 0 -5px 15px 2px #f48b29, 0 -10px 25px 4px #e85c18;
+    
+    /* Hiệu ứng ngọn lửa chập chờn */
+    animation: flame-flicker 0.15s infinite alternate;
+}
+
+/* Hiệu ứng ngọn lửa chập chờn */
+@keyframes flame-flicker {
+    0% { transform: scale(1) skewX(0deg); opacity: 0.9; }
+    25% { transform: scale(1.02, 1.1) skewX(-1deg); opacity: 1; }
+    50% { transform: scale(1.05, 1) skewX(1deg); opacity: 0.95; }
+    75% { transform: scale(1.02, 1.1) skewX(-1deg); opacity: 1; }
+    100% { transform: scale(1.05, 1.05) skewX(0deg); opacity: 0.9; }
+}
+
+/* Lớp phủ tối màu nền */
+.overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    z-index: 999;
+}
+
+/* Modal chính */
+.modal {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 90%; /* Chiếm 90% chiều ngang điện thoại */
+    max-width: 450px;
+    background: #ffabbd; /* Màu hồng như ảnh */
+    border: 4px solid white;
+    border-radius: 25px;
+    padding: 40px 20px;
+    text-align: center;
+    display: none;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal.active {
+    display: block;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Nút đóng x */
+.close-btn {
+    position: absolute;
+    top: 15px; right: 15px;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    color: #ffabbd;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Avatar hình tròn */
+.avatar-wrapper {
+    width: 120px; height: 120px;
+    margin: 0 auto 20px;
+    border: 5px solid white;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.avatar { width: 100%; height: 100%; object-fit: cover; object-position: center 35%;}
+
+/* Nội dung lời chúc */
+.wish-content{
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    text-align:center;
+    line-height:1.5;
+    flex-direction:column;
+}
+
+/* Hiệu ứng gõ chữ */
+.typing {
+    border-right: 2px solid white;
+    white-space: normal;   /* cho phép xuống dòng */
+    overflow: visible;
+    display: inline-block;
+    animation: blink 0.7s infinite;
+}
+#candles-layer{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+@keyframes blink { 50% { border-color: transparent; } }
